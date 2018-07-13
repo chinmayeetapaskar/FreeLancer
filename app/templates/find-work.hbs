@@ -1,0 +1,114 @@
+<section class="find-work">
+<!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                {{input type='text' class='form-control' value=search placeholder='Search for...'}}
+
+                <span class="input-group-btn">
+                  {{#link-to "find-work" (query-params query=search category=null) class="btn btn-primary"}}Go!{{/link-to}}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      {{#link-to "find-work" (query-params category="c" query = null)}}C/C++/C#{{/link-to}}
+                    </li>
+                    <li>
+                      {{#link-to "find-work" (query-params category="web" query = null)}}HTML/CSS{{/link-to}}
+                    </li>
+                    <li>
+                      {{#link-to "find-work" (query-params category="mobile" query = null)}}iOS/Android{{/link-to}}
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      {{#link-to "find-work" (query-params category="javascript" query = null)}}JavaScript{{/link-to}}
+                    </li>
+                    <li>
+                      {{#link-to "find-work" (query-params category="java" query = null)}}Java{{/link-to}}
+                    </li>
+                    <li>
+                      {{#link-to "find-work" (query-params category="web_design" query = null)}}Web Design{{/link-to}}
+                    </li>
+                    <li>
+                      {{#link-to "find-work" (query-params category="other" query = null)}}Other{{/link-to}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+
+        </div>
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 job-posting">
+
+
+          {{#if filteredJobs}}
+            {{#if searching_for}}
+              <p>Showing results for: <strong>{{searching_for}}</strong></p>
+            {{/if}}
+          {{#each filteredJobs as |job|}}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title">{{job.jobName}}</h2>
+              <p class="card-text">{{job.jobDesc}}</p>
+              {{#link-to "jobs" (query-params id=job.id) class="btn btn-primary"}}Bid Now &rarr;{{/link-to}}
+            </div>
+            <div class="card-footer text-muted">
+              {{job.dateCreated}}
+              Category: {{job.category}}
+            </div>
+          </div>
+          {{/each}}
+
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+          {{else}}
+            <p>No results found for: <strong>{{searching_for}}</strong></p>
+          {{/if}}
+
+
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+</section>

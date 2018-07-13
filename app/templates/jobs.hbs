@@ -1,0 +1,55 @@
+<section class="jobs">
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+
+      <div class="col-lg-12">
+
+        {{#each jobID as |job|}}
+        <div class="card mt-4">
+
+          <div class="card-body">
+            <h3 class="card-title">{{job.jobName}}</h3>
+            <h4>Estimated Budget: ${{job.jobBudget}}</h4>
+            <p class="card-text">{{job.jobDesc}}</p>
+            
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit" {{action 'bidNow' amount}}>Bid Now</button>
+              <label for="exampleDropdownFormEmail1">Amount</label>
+              {{input type="text" class="form-control" id="amount" placeholder="$700" value=bidAmount}}
+            </div>
+    
+
+
+            </div>
+            </div>
+        {{/each}}
+        <!-- /.card -->
+
+
+        {{#each bidders as |bid|}}
+        <div class="card mb-4">
+          <div class="card-header">
+            Freelancer
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">{{bid.freelancerID}}</h2>
+            <p class="card-text">Bid Amount: ${{bid.bidAmount}}</p>
+          </div>
+          <div class="card-footer text-muted">
+            Date Posted: {{bid.dateCreated}}
+          </div>
+        </div>
+
+        {{/each}}
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+
+  </div>
+  <!-- /.container -->
+</section>
